@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Director List</title>
+</head>
+<body>
+<h1>Director List</h1>
+{% for director in director_list %}
+    <a>Name: {{ director.name }}</a>
+    <hr>
+{% endfor %}
+</body>
+</html>

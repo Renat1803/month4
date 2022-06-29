@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<a href="/movies"><button>все фильмы</button></a>
+{% for director in director_list %}
+    <a href="/directors/{{ director.id }}/movies/"><button>{{ director.name }}</button></a>
+{% endfor %}
+<h1>Movies List</h1>
+{% for movie in movie_list %}
+    <a href="/movies/{{ movie.id }}/">Title: {{ movie.title }}</a>
+    <p>title: {{ movie.title }}</p>
+    <p>Director: {{ movie.director.name }}</p>
+    <hr>
+{% endfor %}
+</body>
+</html>

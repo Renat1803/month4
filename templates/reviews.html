@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<a href="/reviews"><button>все отзывы</button></a>
+{% for movie in movie_list %}
+    <a href="/movies/{{ movie.id }}/reviews/"><button>{{ movie.name }}</button></a>
+{% endfor %}
+<h1>Reviews List</h1>
+{% for review in review_list %}
+    <a>text: {{ review.text }}</a>
+    <p>Movie: {{ review.movie.name }}</p>
+    <hr>
+{% endfor %}
+</body>
+</html>
