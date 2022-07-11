@@ -1,7 +1,7 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from mainapp.models import Director, Movie, Review
 import datetime
-from mainapp.forms import DirectorForm, MovieForm
+from mainapp.forms import DirectorForm, MovieForm, RegisterForm, LoginForm
 
 now = datetime.datetime.now().replace(microsecond=0)
 
@@ -92,4 +92,21 @@ def add_movie_view(request):
     form = MovieForm
     return render(request, 'add_director.html', context={
         'form': form
+    })
+
+def register_view(request):
+    form = RegisterForm()
+    if request.method == 'POST':
+        form = RegisterForm(data=request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('/register/')
+    return render(request, 'register.html', context={
+        'form': form
+    })
+
+def login_view(request):
+    form = LoginForm()
+    return render(request, 'login.html', context={
+        'form':form
     })
