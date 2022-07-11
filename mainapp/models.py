@@ -10,6 +10,7 @@ class Movie(models.Model):
     director = models.ForeignKey(Director, on_delete=models.CASCADE, null=True)
     title = models.TextField(max_length=1000)
     description = models.TextField(blank=True)
+    image = models.ImageField(upload_to='movies', null=True)
 
     def __str__(self):
         return self.title

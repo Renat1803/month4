@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from mainapp.models import Director, Movie, Review
 import datetime
+from mainapp.forms import DirectorForm, MovieForm
 
 now = datetime.datetime.now().replace(microsecond=0)
 
@@ -48,7 +49,9 @@ def movie_list_view(request):
 
 def movie_detail_view(request, id):
     movie = Movie.objects.get(id=id)
-    return render(request, 'detail.html', context={'movie_detail': movie})
+    return render(request, 'detail.html', context={'movie_detail': movie,
+                                                   'director_list': Director.objects.all(),
+                                                   'reviews': Review.objects.filter(movie=movie)})
 
 
 def review_list_view(request):
@@ -78,3 +81,15 @@ def movie_review_filter_view(request, id):
         'movie_list': Movie.objects.all()
     }
     return render(request, 'reviews.html', context=context)
+
+def add_director_view(request):
+    form = DirectorForm
+    return render(request, 'add_director.html', context={
+        'form': form
+    })
+
+def add_movie_view(request):
+    form = MovieForm
+    return render(request, 'add_director.html', context={
+        'form': form
+    })
